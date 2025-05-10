@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Résultat Countdown</title>
+  <title>BAC 2K25 Countdown</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -11,61 +11,121 @@
       margin: 0;
       padding: 0;
     }
+
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       font-family: 'Orbitron', sans-serif;
-      background-color: #213448;
+      background-color: #0F243E;
       color: #ECEFCA;
       text-align: center;
+      padding: 30px 0;
       box-sizing: border-box;
     }
+
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    #countdown {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-    }
-    footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9rem;
+      font-size: 2.8rem;
+      margin: 0;
       color: #ECEFCA;
+    }
+
+    .countdown {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      font-size: 5rem;
+      font-weight: bold;
+    }
+
+    .countdown div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      min-width: 100px;
+    }
+
+    .countdown div span:first-child {
+      color: #94B4C1;
+      font-size: 5rem;
+    }
+
+    #seconds, .seconds {
+      color: red !important;
+      animation: glow 1s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px red; }
+      to { text-shadow: 0 0 20px red; }
+    }
+
+    .label {
+      font-size: 0.9rem;
+      margin-top: 5px;
+      color: #ECEFCA;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      color: #ECEFCA;
+      margin: 0;
+    }
+
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 3.2rem;
+      }
+      .countdown {
+        font-size: 6rem;
+        gap: 35px;
+      }
+      .countdown div span:first-child {
+        font-size: 6rem;
+      }
+      .label {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Résultat BAC 2K25</h1>
-  <div id="countdown">Chargement...</div>
+  <h1>BAC 2K25 COUNTDOWN</h1>
+  <div class="countdown">
+    <div><span id="days">00</span><span class="label">DAYS</span></div>
+    <div><span>:</span></div>
+    <div><span id="hours">00</span><span class="label">HOURS</span></div>
+    <div><span>:</span></div>
+    <div><span id="minutes">00</span><span class="label">MINUTES</span></div>
+    <div><span>:</span></div>
+    <div><span id="seconds" class="seconds">00</span><span class="label">SECONDS</span></div>
+  </div>
   <footer>
-    &copy;taha bac info 2k25. All rights reserved.
+    &copy; taha bac info 2k25. All rights reserved.
   </footer>
 
   <script>
-    const countdownElement = document.getElementById("countdown");
-    const targetDate = new Date("2025-06-24T00:00:00");
+    const countdownDate = new Date("June 24, 2025 00:00:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date();
-      const timeDiff = targetDate - now;
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
 
-      if (timeDiff <= 0) {
-        countdownElement.textContent = "Les résultats sont disponibles !";
-        return;
-      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
-      const seconds = Math.floor((timeDiff / 1000) % 60);
-
-      countdownElement.textContent =
-        `${days}j ${hours}h ${minutes}m ${seconds}s`;
-    }
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    };
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
