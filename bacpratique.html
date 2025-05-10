@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Résultat Countdown</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-  <style>
+ <style>
     html, body {
       height: 100%;
       margin: 0;
@@ -14,27 +14,65 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       font-family: 'Orbitron', sans-serif;
       background-color: #213448;
       color: #ECEFCA;
       text-align: center;
+      padding: 20px 0;
       box-sizing: border-box;
     }
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    #countdown {
       font-size: 2.5rem;
-      margin-bottom: 40px;
+      margin: 0;
+      color: #ECEFCA;
+    }
+    .countdown {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      font-size: 5rem;
+      font-weight: bold;
+    }
+    .countdown div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .countdown div span:first-child {
+      color: #94B4C1;
+    }
+    /* Seconds in red */
+    #seconds, .seconds {
+      color: red !important;
+    }
+    .label {
+      font-size: 0.9rem;
+      margin-top: 5px;
+      color: #ECEFCA;
     }
     footer {
-      position: absolute;
-      bottom: 20px;
       font-size: 0.9rem;
       color: #ECEFCA;
+      margin: 0;
+    }
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 3rem;
+      }
+      .countdown {
+        font-size: 6rem;
+        gap: 20px;
+      }
+      .label {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
