@@ -20,39 +20,62 @@
       background-color: #213448;
       color: #ECEFCA;
       text-align: center;
+      padding: 20px 0;
       box-sizing: border-box;
     }
     h1 {
-      font-size: 3rem;
-      margin-top: 40px;
+      font-size: 2.5rem;
+      margin: 0;
       color: #ECEFCA;
     }
-    .buttons {
+    .countdown {
       flex: 1;
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-    }
-    .button {
-      background-color: #547792;
-      color: #ECEFCA;
-      font-size: 2rem;
-      padding: 20px 40px;
-      border-radius: 10px;
-      text-decoration: none;
+      align-items: center;
+      gap: 15px;
+      font-size: 5rem;
       font-weight: bold;
-      transition: background-color 0.3s;
     }
-    .button:hover {
-      background-color: #94B4C1;
+    .countdown div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .countdown div span:first-child {
+      color: #94B4C1;
+    }
+    /* Seconds in red */
+    #seconds, .seconds {
+      color: red !important;
+    }
+    .label {
+      font-size: 0.9rem;
+      margin-top: 5px;
+      color: #ECEFCA;
     }
     footer {
-      margin-bottom: 20px;
       font-size: 0.9rem;
       color: #ECEFCA;
+      margin: 0;
+    }
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 3rem;
+      }
+      .countdown {
+        font-size: 6rem;
+        gap: 20px;
+      }
+      .label {
+        font-size: 1rem;
+      }
     }
   </style>
+
 </head>
 <body>
   <h1>BAC 2K25 Countdown</h1>
